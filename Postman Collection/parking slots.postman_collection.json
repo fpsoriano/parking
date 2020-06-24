@@ -1,0 +1,205 @@
+{
+	"variables": [],
+	"info": {
+		"name": "parking slots",
+		"_postman_id": "c55e8f96-b350-1e8d-e007-0362b3a761bb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "parking",
+			"description": "",
+			"item": [
+				{
+					"name": "Get All Parkings",
+					"request": {
+						"url": "http://localhost:8083/parking",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create/Update Parking",
+					"request": {
+						"url": "http://localhost:8083/parking",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": \"testIdParking\",\n        \"name\": \"Parking Name Test\",\n        \"address\": \"Test address\",\n        \"priceDetails\": {\n\t\t    \"fixedAmount\": \"2.10\",\n\t\t    \"hourPrice\": \"1.00\",\n\t\t    \"pricingPoliciy\": \"NBHOURS_HOURPRICE\"\n\t\t},\n        \"slots\": [\n            {\n                \"type\": \"SEDAN_CARS\",\n                \"numberOfSlots\": 10,\n                \"numberOfAvailableSlots\": 2\n            }\n        ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customer",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all customers",
+					"request": {
+						"url": "http://localhost:8083/customer",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create/update customer",
+					"request": {
+						"url": "http://localhost:8083/customer",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cars\": [\n    {\n      \"model\": \"Cruze\",\n      \"plate\": \"GMM-4755\",\n      \"type\": \"SEDAN_CARS\"\n    }\n  ],\n  \"cellphone\": \"5519993387464\",\n  \"id\": \"497198599\",\n  \"name\": \"Fabricio Soriano Palhavam\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Customer by ID",
+					"request": {
+						"url": "http://localhost:8083/customer/497198599",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"url": "http://localhost:8083/order",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entryDate\": \"2020-06-23T19:30:00.999Z\",\n  \"parkingId\": \"testIdParking\",\n  \"id\": \"4571\",\n  \"customerId\": \"497198599\",\n  \"plateCar\": \"GMM-4755\",\n  \"price\": 0,\n  \"status\": \"Open\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Orders",
+					"request": {
+						"url": "http://localhost:8083/order",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Close Order",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8083/order/4571/close?timestamp=1592953200000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"order",
+								"4571",
+								"close"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "1592953200000",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get order by Id",
+					"request": {
+						"url": "http://localhost:8083/order/4571",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"url": "http://localhost:8083/order/4571",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entryDate\": \"2020-06-23T19:30:00.999Z\",\n  \"parkingId\": \"testIdParking\",\n  \"id\": \"4571\",\n  \"customerId\": \"497198599\",\n  \"plateCar\": \"GMM-4755\",\n  \"price\": 0,\n  \"status\": \"Open\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
