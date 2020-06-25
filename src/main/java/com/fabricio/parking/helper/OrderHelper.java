@@ -4,6 +4,7 @@ import com.fabricio.parking.repository.model.order.OrderModel;
 import com.fabricio.parking.repository.model.parking.ParkingModel;
 import com.fabricio.parking.vo.parking.PricingPolicyEnum;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 
 public class OrderHelper {
@@ -13,7 +14,7 @@ public class OrderHelper {
 
     BigDecimal price = BigDecimal.ZERO;
     Duration duration = Duration.between(orderModel.getEntryDate(), orderModel.getEndDate());
-    BigDecimal nb_hours = new BigDecimal(duration.toMinutes() / 60);
+    BigDecimal nb_hours = new BigDecimal(duration.toMinutes()).divide(new BigDecimal(60), 2, RoundingMode.HALF_EVEN);
 
     if (parkingModel.getPriceDetails().getPricingPoliciy().equals(PricingPolicyEnum.NBHOURS_HOURPRICE.toString())) {
       price = parkingModel.getPriceDetails().getHourPrice().multiply(nb_hours);
