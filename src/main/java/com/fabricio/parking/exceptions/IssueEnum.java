@@ -2,8 +2,6 @@ package com.fabricio.parking.exceptions;
 
 import java.util.IllegalFormatException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Slf4j
 public enum IssueEnum {
@@ -28,8 +26,11 @@ public enum IssueEnum {
   }
 
   public int getCode() {
-
     return code;
+  }
+
+  public String getMessage() {
+    return message;
   }
 
   public String getFormattedMessage(final Object... args) {

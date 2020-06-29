@@ -3,7 +3,6 @@ package com.fabricio.parking.controller;
 import com.fabricio.parking.repository.model.customer.CustomerModel;
 import com.fabricio.parking.service.CustomerService;
 import com.fabricio.parking.vo.customer.CustomerVo;
-import com.fabricio.parking.vo.order.OrderVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -32,7 +31,6 @@ public class CustomerController {
     CustomerVo customerVo = customerService.save(customerRequest.toCustomerModel()).toCustomerVo();
     return new ResponseEntity<>(customerVo, HttpStatus.CREATED);
   }
-
 
   @ApiOperation(
       value = "Get customer by id",

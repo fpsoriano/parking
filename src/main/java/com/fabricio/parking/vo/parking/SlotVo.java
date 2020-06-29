@@ -1,15 +1,22 @@
 package com.fabricio.parking.vo.parking;
 
+import static com.fabricio.parking.helper.ValidationConstants.NUMBER_OF_AVAILABLE_SLOTS_IS_REQUIRED;
+import static com.fabricio.parking.helper.ValidationConstants.NUMBER_OF_SLOTS_IS_REQUIRED;
+
 import com.fabricio.parking.repository.model.parking.SlotModel;
 import com.fabricio.parking.vo.parking.validator.Type;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class SlotVo {
 
   @NotBlank(message = "Slot type is required")
@@ -21,11 +28,11 @@ public class SlotVo {
   private String type;
 
   @ApiModelProperty(example = "10", notes = "Number of slots in the parking")
-  @NotNull(message = "Number of slots  is required")
+  @NotNull(message = NUMBER_OF_SLOTS_IS_REQUIRED)
   private Integer numberOfSlots;
 
   @ApiModelProperty(example = "5", notes = "Number of available slots. It means if the slot is free to park the car")
-  @NotNull(message = "Number of available is required")
+  @NotNull(message = NUMBER_OF_AVAILABLE_SLOTS_IS_REQUIRED)
   private Integer numberOfAvailableSlots;
 
   public SlotModel toParkingModel(){

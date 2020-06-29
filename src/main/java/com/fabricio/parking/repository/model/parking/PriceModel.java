@@ -1,17 +1,18 @@
 package com.fabricio.parking.repository.model.parking;
 
 import com.fabricio.parking.vo.parking.PriceVo;
-import com.fabricio.parking.vo.parking.validator.PricingPolicy;
-import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
-import javax.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PriceModel {
 
   private BigDecimal fixedAmount;

@@ -12,9 +12,6 @@ import com.fabricio.parking.repository.model.order.OrderModel;
 import com.fabricio.parking.repository.model.parking.ParkingModel;
 import com.fabricio.parking.repository.model.parking.SlotModel;
 import com.fabricio.parking.vo.order.OrderStatusEnum;
-import com.fabricio.parking.vo.order.OrderVo;
-import java.time.Duration;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,10 +94,8 @@ public class OrderService {
 
     Optional<OrderModel> optionalOrderModel = orderRepository.findById(orderId);
 
-    if (optionalOrderModel.isPresent()) {
-      if (optionalOrderModel.get().getStatus().equals(OrderStatusEnum.CLOSED.toString())) {
-        throw BadRequestException.businessRule(IssueEnum.CLOSED_ORDER_CANNOT_BE_UPDATED, orderModel.getId());
-      }
+    if (optionalOrderModel.get().getStatus().equals(OrderStatusEnum.CLOSED.toString())) {
+      throw BadRequestException.businessRule(IssueEnum.CLOSED_ORDER_CANNOT_BE_UPDATED, orderModel.getId());
     }
 
     parkingService.findById(orderModel.getParkingId());

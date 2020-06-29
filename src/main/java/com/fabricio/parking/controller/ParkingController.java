@@ -2,7 +2,6 @@ package com.fabricio.parking.controller;
 
 import com.fabricio.parking.repository.model.parking.ParkingModel;
 import com.fabricio.parking.service.ParkingService;
-import com.fabricio.parking.vo.customer.CustomerVo;
 import com.fabricio.parking.vo.parking.ParkingVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,7 +36,7 @@ public class ParkingController {
       value = "Get parking by id",
       notes = "Retrieves parking by id to check all the information")
   @GetMapping("/parking/{parkingId}")
-  public ParkingVo getOrderById(@ApiParam(value = "Parking id", required = true) @PathVariable final String customerId) {
+  public ParkingVo getParkingById(@ApiParam(value = "Parking id", required = true) @PathVariable final String customerId) {
     return parkingService.findById(customerId).toParkingVo();
   }
 
