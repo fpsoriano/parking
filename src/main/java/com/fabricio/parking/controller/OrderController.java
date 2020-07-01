@@ -28,7 +28,7 @@ public class OrderController {
 
   @ApiOperation(
       value = "Create an Order",
-      notes = "It is necessary to create an order to register some information that will be used to calculate and charge the client")
+      notes = "It is necessary to create an order when a drivers wants to park the car. So you need to register the customer information and the date/time that he arrived.")
   @PostMapping("/order")
   public ResponseEntity saveOrder(@ApiParam(value = "Order object", required = true) @Valid @RequestBody final OrderVo orderRequest) {
     log.info("Request : {}", orderRequest);
@@ -48,10 +48,13 @@ public class OrderController {
     return new ResponseEntity<>(orderVo, HttpStatus.OK);
   }
 
+  @ApiOperation(
+      value = "Close the order",
+      notes = "When the customer wants to pay, you should close the order to calculate the price that will be charged.")
   @PutMapping("/order/{orderId}/close")
   public ResponseEntity<OrderVo> closeOrder(
       @ApiParam(value = "Order id", required = true) @PathVariable final String orderId,
-      @ApiParam(value = "Order id. Id not informed the application will get the current date/time") @RequestParam final Long timestamp
+      @ApiParam(value = "Timestamp. If not informed the application will get the current date/time") @RequestParam final Long timestamp
       ) {
     log.info("Order Id : {}", orderId);
     OrderVo orderVo = orderService.closeOrder(orderId, timestamp).toOrderVo();

@@ -25,6 +25,9 @@ public class CustomerController {
   private final CustomerService customerService;
   public CustomerController(CustomerService customerService) {this.customerService = customerService;}
 
+  @ApiOperation(
+      value = "Register customer",
+      notes = "Register customer in the application")
   @PostMapping("/customer")
   public ResponseEntity addCustomer(@ApiParam(value = "Customer object", required = true) @Valid @RequestBody final CustomerVo customerRequest) {
     log.info("Request : {}", customerRequest);
@@ -41,7 +44,7 @@ public class CustomerController {
   }
 
   @ApiOperation(
-      value = "All parking slots",
+      value = "Retrieves all customers",
       notes = "Retrieves customers registered in the application")
   @GetMapping("/customer")
   public List<CustomerModel> getAllCustomers() {

@@ -25,6 +25,9 @@ public class ParkingController {
   private final ParkingService parkingService;
   public ParkingController(ParkingService parkingService) {this.parkingService = parkingService;}
 
+  @ApiOperation(
+      value = "Register parking",
+      notes = "Register the parking in the application")
   @PostMapping("/parking")
   public ResponseEntity addParking(@ApiParam(value = "Parking object", required = true) @Valid @RequestBody final ParkingVo parkingRequest) {
     log.info("Request : {}", parkingRequest);

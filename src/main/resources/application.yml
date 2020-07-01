@@ -1,9 +1,9 @@
 
 # Swagger configurations
-swaggerBaseUrl: http://localhost:8080
+swaggerBaseUrl: http://localhost:8081
 
 server:
-  port: 8080
+  port: 8081
 
 database:
   collections:
